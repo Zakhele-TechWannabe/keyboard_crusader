@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export const Instructions = ({ task }: { task: string }) => {
   return (
@@ -56,7 +56,9 @@ const keyframes = `
 }
 `;
 
-const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = keyframes;
-document.head.appendChild(styleSheet);
+useEffect(() => {
+  const styleSheet = document.createElement("style");
+  styleSheet.type = "text/css";
+  styleSheet.innerText = keyframes;
+  document.head.appendChild(styleSheet);
+}, []);

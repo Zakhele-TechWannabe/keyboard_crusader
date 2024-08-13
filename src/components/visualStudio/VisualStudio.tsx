@@ -38,60 +38,59 @@ const VisualStudio: React.FC = () => {
   const [score, setScore] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [volume, setVolume] = useState(0.5); // Initialize volume state
-  const userId = localStorage.getItem('user');
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
-  // const playerLevel = localStorage.getItem('level') || 1;
 
   const router = useRouter();
 
-  // Load settings from local storage
-  const settings = JSON.parse(localStorage.getItem('gameSettings') || '{}');
-  const soundEffectsEnabled = settings.sound;
-  const backgroundMusicEnabled = settings.music;
-  const backgroundMusicVolume = settings.volume || 0.5;
+  // Only initialize `localStorage` and `Audio` on the client side
+  const userId = typeof window !== "undefined" ? localStorage.getItem('user') : null;
+  const settings = typeof window !== "undefined" ? JSON.parse(localStorage.getItem('gameSettings') || '{}') : {};
+  const soundEffectsEnabled = settings.sound ?? true;
+  const backgroundMusicEnabled = settings.music ?? true;
+  const backgroundMusicVolume = settings.volume ?? 0.5;
 
-  // Audio instances
-  const keySound = new Audio('/assets/sound/keyboard.mp3');
-  const correctSound = new Audio('/assets/sound/correct.mp3');
-  const incorrectSound = new Audio('/assets/sound/incorrect.mp3');
-  const backgroundSound = new Audio('/assets/sound/pursuer.mp3');
+  // Audio instances, only defined if `window` is available
+  let keySound: HTMLAudioElement | undefined;
+  let correctSound: HTMLAudioElement | undefined;
+  let incorrectSound: HTMLAudioElement | undefined;
+  let backgroundSound: HTMLAudioElement | undefined;
 
-  // Update volumes on load and settings change
-  useEffect(() => {
+  if (typeof window !== "undefined") {
+    keySound = new Audio('/assets/sound/keyboard.mp3');
+    correctSound = new Audio('/assets/sound/correct.mp3');
+    incorrectSound = new Audio('/assets/sound/incorrect.mp3');
+    backgroundSound = new Audio('/assets/sound/pursuer.mp3');
+
     keySound.volume = backgroundMusicVolume;
     correctSound.volume = backgroundMusicVolume;
     incorrectSound.volume = backgroundMusicVolume;
     backgroundSound.volume = backgroundMusicVolume;
+  }
 
-    if (backgroundMusicEnabled) {
+  useEffect(() => {
+    if (backgroundSound && backgroundMusicEnabled) {
       backgroundSound.loop = true;
       backgroundSound.play();
-    } else {
+    } else if (backgroundSound) {
       backgroundSound.pause();
     }
 
     return () => {
-      backgroundSound.pause();
-      backgroundSound.currentTime = 0; // Reset the sound
+      if (backgroundSound) {
+        backgroundSound.pause();
+        backgroundSound.currentTime = 0; // Reset the sound
+      }
     };
   }, [backgroundMusicVolume, backgroundMusicEnabled]);
 
   const [playerLevel, setPlayerLevel] = useState<number>(() => {
-    // Retrieve the player's level from local storage or default to level 1
-    const storedLevel = localStorage.getItem('playerLevel');
+    const storedLevel = typeof window !== "undefined" ? localStorage.getItem('playerLevel') : null;
     return storedLevel ? parseInt(storedLevel, 10) : 1;
   });
-  
 
   useEffect(() => {
-
-    const savedTheme = localStorage.getItem('theme');
-    console.log("Themeee", savedTheme)
-    if (savedTheme === 'dark') {
-      setIsDarkMode(true);
-    } else {
-      setIsDarkMode(false);
-    }
+    const savedTheme = typeof window !== "undefined" ? localStorage.getItem('theme') : 'dark';
+    setIsDarkMode(savedTheme === 'dark');
 
     const fetchTasks = async () => {
       try {
@@ -113,27 +112,26 @@ const VisualStudio: React.FC = () => {
 
     const openFullscreen = () => {
       const elem = document.documentElement;
-
       if (elem && elem.requestFullscreen) {
         elem.requestFullscreen();
-      } 
+      }
     };
 
-  openFullscreen();
+    openFullscreen();
   }, [playerLevel]);
 
   const handleNextLevel = () => {
     const nextLevel = playerLevel + 1;
     setPlayerLevel(nextLevel);
-    localStorage.setItem('playerLevel', nextLevel.toString());
+    if (typeof window !== "undefined") {
+      localStorage.setItem('playerLevel', nextLevel.toString());
+    }
     setTaskIndex(0);
     setModalOpen(false);
   };
 
   const logAttempt = async (success: boolean, score: number) => {
-    console.log('Logging user attempt:', userId, success, score);
     if (!userId) return;
-
     try {
       const response = await fetch('https://keyboard-crusader-backend.onrender.com/api/addAttempt', {
         method: 'POST',
@@ -196,7 +194,7 @@ const VisualStudio: React.FC = () => {
   const handleKeyDown = (e: KeyboardEvent) => {
     e.preventDefault(); // Prevent browser shortcuts from interfering
   
-    if (soundEffectsEnabled) {
+    if (soundEffectsEnabled && keySound) {
       keySound.play();
     }
 
@@ -232,7 +230,7 @@ const VisualStudio: React.FC = () => {
   };
 
   const handleTaskCompletion = () => {
-    if (soundEffectsEnabled) {
+    if (soundEffectsEnabled && correctSound) {
       correctSound.play(); 
     }
 
@@ -252,34 +250,6 @@ const VisualStudio: React.FC = () => {
     }
   };
 
-  const handleTaskFailure = () => {
-    if (soundEffectsEnabled) {
-      incorrectSound.play(); 
-      if (taskIndex < tasks.length - 1) {
-        setTaskIndex(taskIndex + 1);
-        setCode(tasks[taskIndex + 1].code);
-        setScore((prev) => prev + 100); 
-        message.success('Task Completed!');
-        logAttempt(true, score + 100);
-        setOpen(true);
-      } else {
-        setScore((prev) => prev + 100);
-        setModalOpen(true);
-        setTimeout(() => {
-          setOpen(false);
-        }, 1500);
-      }
-    }
-    message.error('Incorrect key combination, try again!');
-  };
-  
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [taskIndex, tasks]);
-
   const navigate = (path: string) =>{
     router.push(path);
   }
@@ -291,7 +261,6 @@ const VisualStudio: React.FC = () => {
     message.success('New item added successfully!');
   };
 
-
   const toggleTheme = () => {
     const savedTheme = localStorage.getItem('theme');
     let newTheme = savedTheme === "dark" ? "light" : "dark";
@@ -299,11 +268,9 @@ const VisualStudio: React.FC = () => {
       setIsDarkMode(true);
     } else {
       setIsDarkMode(false);
-
     }
     localStorage.setItem('theme', newTheme);
   };
-
 
   return (
     <div className={vsContainerStyle} style={isDarkMode ? styles.dark : styles.light}>
@@ -437,22 +404,19 @@ const styles = {
   dark: {
     backgroundColor: "#1e1e1e",
     color: "#d4d4d4"
-
   },
   light: {
     backgroundColor: "#ffffff",
     color: "#000"
   },
-
-  toggledark:{
-    padding :"0px",
-    backgroundColor: "#blue",
-    color: "#000"
-  },
-  togglelight:{
-    padding :"0px",
+  toggledark: {
+    padding: "0px",
     backgroundColor: "#000",
     color: "#fff"
+  },
+  togglelight: {
+    padding: "0px",
+    backgroundColor: "#fff",
+    color: "#000"
   }
-
 };

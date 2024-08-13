@@ -29,7 +29,7 @@ const Settings = () => {
         }
     }, [settings]);
 
-    const handleToggle = (key: string) => {
+    const handleToggle = (key: keyof typeof settings) => {
         setSettings((prevSettings: typeof settings) => ({
             ...prevSettings,
             [key]: !prevSettings[key],
@@ -46,8 +46,8 @@ const Settings = () => {
 
     return (
         <div className="page-container">
-            <div style={{padding: '20px'}}>
-                <BackButton/>
+            <div style={{ padding: '20px' }}>
+                <BackButton />
             </div>
             <div className="settings-container">
                 <h1>Game Settings</h1>
@@ -77,8 +77,8 @@ const Settings = () => {
                     <input
                         type="range"
                         id="volume-slider"
-                        min="0.1"
-                        max="0.5"
+                        min="0"
+                        max="1"
                         step="0.1"  // Ensures the slider increments by 0.1
                         value={settings.volume}
                         onChange={handleVolumeChange}
