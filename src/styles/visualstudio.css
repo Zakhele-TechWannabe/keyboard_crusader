@@ -1,0 +1,188 @@
+/* Default Light Theme */
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --toolbar-background: #f1f1f1;
+  --button-background: #e0e0e0;
+  --button-text-color: #000000;
+}
+
+.dark {
+  --background-color: #1e1e1e;
+  --text-color: #d4d4d4;
+  --toolbar-background: #3a3a3a;
+  --button-background: #4a4a4a;
+  --button-text-color: #ffffff;
+}
+
+.vs-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #1e1e1e; /* VS Code dark theme background */
+  font-family: Consolas, "Courier New", monospace; /* Code-like font */
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.vs-container-open {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: calc(100vw - 378px);
+  font-family: Consolas, "Courier New", monospace; /* Code-like font */
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+/* Main and Second Toolbar */
+.vs-toolbar, .vs-toolbar2 {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--toolbar-background);
+  padding: 5px;
+  border-bottom: 1px solid #555555;
+}
+
+/* Buttons in Toolbar */
+.vs-toolbar button {
+  background-color: transparent;
+  border: none;
+  color: #d4d4d4;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.vs-toolbar button:hover {
+  background-color: #454545;
+}
+
+/* Flexbox for Toolbar Sections */
+.vs-toolbar-left {
+  display: flex;
+}
+
+.vs-toolbar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Profile Picture and Name */
+.vs-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.vs-profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.vs-profile-name {
+  color: #d4d4d4;
+  font-size: 14px;
+}
+
+/* Content Area */
+.vs-content {
+  display: flex;
+  flex: 1;
+  background-color: #252526;
+}
+
+/* Project Explorer */
+.vs-project-explorer {
+  width: 250px;
+  background-color: #333333;
+  padding: 10px;
+  border-right: 1px solid #555555;
+}
+
+.vs-project-explorer h3 {
+  font-size: 14px;
+  color: #bbbbbb;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #555555;
+  padding-bottom: 5px;
+}
+
+.vs-project-explorer ul {
+  list-style-type: none;
+  padding-left: 20px;
+  font-size: 13px;
+}
+
+.vs-project-explorer li {
+  padding: 3px 0;
+  cursor: pointer;
+}
+
+.vs-project-explorer li:hover {
+  background-color: #454545;
+}
+
+/* Code Editor */
+.vs-code-editor {
+  flex: 1;
+  padding: 20px;
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  overflow-y: auto;
+}
+
+.vs-code-editor h3 {
+  font-size: 14px;
+  color: #bbbbbb;
+  margin-bottom: 10px;
+}
+
+.vs-textarea {
+  width: 100%;
+  height: calc(100% - 30px);
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  border: none;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 10px;
+  resize: none;
+}
+
+.vs-textarea:focus {
+  outline: none;
+  border: none;
+}
+
+/* Status Bar */
+.vs-status-bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #007acc;
+  padding: 5px 15px;
+  color: #ffffff;
+  font-size: 13px;
+  border-top: 1px solid #555555;
+}
+
+.vs-status-bar-open {
+  display: flex;
+  justify-content: space-between;
+  background-color: #96cc00;
+  padding: 5px 15px;
+  color: #ffffff;
+  font-size: 13px;
+  bottom: 0;
+  border-top: 1px solid #555555;
+}
+
+.vs-status-bar div {
+  display: flex;
+  align-items: center;
+}

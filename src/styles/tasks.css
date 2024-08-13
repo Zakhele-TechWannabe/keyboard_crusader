@@ -1,0 +1,48 @@
+.vs-modal {
+    background-color: #ffffff;
+    border: 1px solid #c3c3c3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .vs-modal-content {
+    padding: 20px;
+  }
+  
+  .vs-modal-section {
+    margin-bottom: 15px;
+  }
+  
+  .vs-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .vs-input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #c3c3c3;
+  }
+  
+  .vs-select {
+    width: 100%;
+  }
+  
+  .vs-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+    border-top: 1px solid #eaeaea;
+  }
+  
+  .vs-cancel-button {
+    margin-right: 10px;
+  }
+  
+  .vs-ok-button {
+    background-color: #0078d7;
+    border-color: #0078d7;
+  }
+  

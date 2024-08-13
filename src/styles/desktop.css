@@ -1,0 +1,69 @@
+.desktop-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-size: cover;
+    background-position: center;
+    background-image: url('/images/desktop4.jpg');
+  }
+  
+  .desktop-icons {
+    display: flex;
+    flex-direction: column;
+    
+    padding: 2.0rem;
+  }
+  
+  .desktop-icon {
+    margin-bottom: 1rem;
+  }
+  
+  .desktop-icon img {
+    width: 4.5rem;
+    height: 4.5rem;
+    cursor: pointer;
+  }
+  
+  .desktop-icon p {
+    margin: 0;
+    color: white;
+  }
+  
+  /* Taskbar styles */
+  .taskbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #099CE5;
+    color: white;
+    height: 3rem;
+  }
+  
+  .taskbar .start-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .taskbar .start-button img {
+    width: 1.5rem;
+    margin-right: 0.5rem;
+  }
+  
+  .taskbar .task-icons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .taskbar .task-icons img {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .taskbar .time {
+    font-size: 0.9rem;
+  }
+  

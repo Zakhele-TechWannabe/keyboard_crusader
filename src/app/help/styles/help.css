@@ -1,0 +1,116 @@
+
+.main-container{
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-image: url('/images/desktop4.jpg');
+    padding: 60px;
+}
+
+
+.help-container {
+    
+    /*background-color: #243D50;*/
+    width: 80%;
+    color: #eaeaea;
+    backdrop-filter: blur(25px);
+
+    /*font-family: 'Press Start 2P', cursive;  Pixelated font */
+    position: relatcve;
+    max-width: 80%;
+    background: transparent;
+   margin: 0px auto;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 30px 40px;
+    border-radius: 20px;
+   
+}
+
+.hero-container{
+    display: flex;
+    margin-bottom: 60px;
+}
+.image-container{
+    display: flex;
+   
+    height: auto;
+    margin-right: 100px;
+}
+
+.image-container img {
+    border-radius: 30px;
+    max-width: 300px;
+    height: auto;
+}
+
+.help-heading{
+    font-size: 45px;
+    margin-bottom: 20px;
+    line-height: 20px;
+}
+
+.open-paragraph{
+    font-size: 22px;
+    
+    margin-top: 5px;
+    font-weight: 300;
+}
+
+.help-right{
+    align-content: center;
+}
+
+.help-subtitle {
+    font-size: 35px;
+    color: #FEA644;
+   margin-bottom: 10px;
+}
+
+
+.help-title {
+    font-size: 2em;
+    color: #00ffff;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+}
+
+.get-started{
+    margin-bottom: 30px;
+    max-width: 100%;
+}
+
+.help-list {
+    list-style-type: none;
+    padding: 0;
+    font-size: 18px;
+}
+
+.help-list li {
+    margin-bottom: 5px;
+}
+
+.help-list li:before {
+    content: "➤ ";
+    color: #FEA644;
+    margin-right: 10px;
+}
+
+.help-paragraph {
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.help-tips {
+    background-color: #16213e00;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 0px 10px rgb(255, 255, 0, 0.5);
+}
+
+.help-tips li:before {
+    content: "★ ";
+    color: #FEA644;
+    margin-right: 10px;
+}

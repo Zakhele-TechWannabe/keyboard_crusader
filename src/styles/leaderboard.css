@@ -1,0 +1,146 @@
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-image: url('/images/leaderboardbackground.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: lighten;
+  opacity: 0.9;
+  height: 100vh;
+  width: 100%;
+}
+
+.leaderboard-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.azure-logo {
+  width: 100px;
+  height: auto;
+}
+
+.home-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.leaderboard-content {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.top-players-section {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+
+.top-player {
+  background-color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  margin-right: 25px;
+  padding: 5px;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.top-player h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #333;
+}
+
+.top-player p {
+  margin: 5px 0;
+  font-size: 18px;
+  color: #666;
+}
+
+.trophy-icon {
+  font-size: 24px;
+  color: gold;
+  margin-top: 10px;
+}
+
+.top-player-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.leaderboard-table-container {
+  width: 70%;
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.leaderboard-table th {
+  background-color: rgba(245, 245, 245, 0.9);
+}
+
+.leaderboard-table tr:hover {
+  background-color: rgba(241, 241, 241, 0.9);
+}
+
+.rank-up {
+  color: green;
+}
+
+.rank-down {
+  color: red;
+}
+
+.no-data {
+  text-align: center;
+  color: #999;
+}
+
+.highlight {
+  background-color: #ffeeba;
+}
