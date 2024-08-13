@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "@/styles/visualStudio.css";
+import "src/styles/visualStudio.css";
 import {
   SaveOutlined,
   UndoOutlined,
